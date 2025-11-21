@@ -253,7 +253,14 @@ app.post("/chat", async (req, res) => {
     }
 
     const combinedContext = [retrieval, context].filter(Boolean).join("\n\n");
-    const answer = await callBedrock(prompt, combinedContext);
+    const concisePrompt = `
+Answer concisely (target <= 80 words). If the files do not contain the answer, say that. Cite specific values or sections only as needed.
+
+User question:
+${prompt}
+`.trim();
+
+    const answer = await callBedrock(concisePrompt, combinedContext);
     res.json({ answer });
   } catch (err) {
     console.error("Bedrock call failed", err);
