@@ -7,16 +7,16 @@
   <title>Files + Bedrock Analyst (React)</title>
   <style>
     :root {
-      --bg: #0d1b2a;
-      --panel: #10263d;
-      --panel-alt: #122c46;
-      --border: #1f3a57;
-      --muted: #9fb4ce;
-      --text: #e8f1fb;
-      --accent: #32d5a4;
-      --accent-2: #4da3ff;
-      --error: #f87171;
-      --shadow: 0 15px 45px rgba(0, 0, 0, 0.35);
+      --bg: #e9dfcc;
+      --panel: #f5ead4;
+      --panel-alt: #ecdec4;
+      --border: #cbb89a;
+      --muted: #6f5b3f;
+      --text: #2b2218;
+      --accent: #b56b2b;
+      --accent-2: #3b7a57;
+      --error: #b33a2a;
+      --shadow: 0 12px 30px rgba(80, 60, 35, 0.14);
     }
 
     * {
@@ -25,19 +25,19 @@
 
     body {
       margin: 0;
-      background: linear-gradient(135deg, #0d1b2a 0%, #0f2133 50%, #0a1522 100%);
+      background: linear-gradient(135deg, #e9dfcc 0%, #e2d2b8 50%, #d8c5a4 100%);
       color: var(--text);
       font-family: "Segoe UI", "Helvetica Neue", Arial, sans-serif;
       min-height: 100vh;
       display: flex;
       flex-direction: column;
-      align-items: center;
+      align-items: stretch;
       padding: 12px;
       overflow-x: hidden;
     }
 
     .page {
-      width: min(1080px, 100%);
+      width: 100%;
       display: flex;
       flex-direction: column;
       gap: 12px;
@@ -48,17 +48,19 @@
       margin: 0 0 10px;
       font-size: 26px;
       letter-spacing: -0.02em;
+      text-align: center;
     }
 
     .subtitle {
       color: var(--muted);
       margin-bottom: 8px;
+      text-align: center;
     }
 
     .layout {
       display: grid;
       grid-template-columns: repeat(2, minmax(0, 1fr));
-      grid-auto-rows: minmax(320px, 1fr);
+      grid-auto-rows: minmax(280px, 1fr);
       gap: 12px;
       min-height: 0;
       width: 100%;
@@ -101,20 +103,20 @@
     }
 
     button {
-      background: linear-gradient(120deg, var(--accent) 0%, #2bc48f 100%);
-      color: #041017;
+      background: linear-gradient(120deg, var(--accent) 0%, #c77f3d 100%);
+      color: #26190d;
       border: none;
       border-radius: 10px;
       padding: 7px 11px;
       font-weight: 700;
       cursor: pointer;
       transition: transform 120ms ease, box-shadow 120ms ease;
-      box-shadow: 0 10px 25px rgba(50, 213, 164, 0.25);
+      box-shadow: 0 10px 22px rgba(199, 124, 51, 0.28);
     }
 
     button:hover {
       transform: translateY(-1px);
-      box-shadow: 0 12px 28px rgba(50, 213, 164, 0.35);
+      box-shadow: 0 12px 28px rgba(199, 124, 51, 0.35);
     }
 
     button:disabled {
@@ -125,16 +127,16 @@
     }
 
     .csv-preview {
-      background: #0c1b2c;
+      background: #f1e4ce;
       border: 1px solid var(--border);
       border-radius: 10px;
       padding: 10px;
-      color: #dce7f5;
+      color: #2f261a;
       font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
       font-size: 12px;
       white-space: pre;
       overflow: auto;
-      max-height: 320px;
+      max-height: 260px;
       flex: 1;
       min-height: 0;
     }
@@ -144,7 +146,7 @@
       border: 1px solid var(--border);
       border-radius: 10px;
       overflow: hidden;
-      background: #0c1b2c;
+      background: #f1e4ce;
       min-height: 0;
     }
 
@@ -152,7 +154,7 @@
       width: 100%;
       height: 100%;
       border: none;
-      background: #0c1b2c;
+      background: #f1e4ce;
     }
 
     .summary-grid {
@@ -164,7 +166,7 @@
     }
 
     .summary-card {
-      background: rgba(255, 255, 255, 0.03);
+      background: #f7edd7;
       border: 1px solid var(--border);
       border-radius: 10px;
       padding: 10px;
@@ -183,16 +185,16 @@
     .summary-text {
       font-size: 14px;
       line-height: 1.5;
-      color: #e9f2ff;
+      color: #2f261a;
       overflow: auto;
     }
 
     .status-pill {
       font-size: 12px;
       padding: 6px 10px;
-      background: #113754;
+      background: #dfcda9;
       border-radius: 999px;
-      color: var(--muted);
+      color: #5a472d;
     }
 
     .chat-panel {
@@ -208,7 +210,7 @@
       display: flex;
       flex-direction: column;
       gap: 10px;
-      background: rgba(255, 255, 255, 0.02);
+      background: #f1e4ce;
       border: 1px solid var(--border);
       border-radius: 10px;
       min-height: 0;
@@ -224,19 +226,19 @@
     }
 
     .bubble.user {
-      background: #14334f;
+      background: #e6d4b7;
       align-self: flex-end;
     }
 
     .bubble.assistant {
-      background: #11273f;
+      background: #f9f0dd;
       align-self: flex-start;
     }
 
     .chat-footer {
       display: flex;
       gap: 8px;
-      align-items: flex-start;
+      align-items: center;
       margin-top: 2px;
     }
 
@@ -245,7 +247,7 @@
       padding: 10px 12px;
       border-radius: 10px;
       border: 1px solid var(--border);
-      background: #0c1b2c;
+      background: #f9f2e2;
       color: var(--text);
       font-size: 14px;
       resize: vertical;
@@ -260,7 +262,7 @@
     .chat-input:disabled {
       opacity: 0.6;
       cursor: not-allowed;
-      background: #0a1625;
+      background: #e6d9c5;
     }
 
     a {
@@ -387,7 +389,7 @@
               value={prompt}
               onChange={(e) => setPrompt(e.target.value)}
             />
-            <button type="submit" disabled={busy}>Send</button>
+            <button type="submit" disabled={busy} style={{ alignSelf: "stretch", minWidth: "72px" }}>Send</button>
           </form>
         </div>
       );
@@ -422,8 +424,8 @@
       return (
         <div className="page">
           <div>
-            <h1>File Briefing Console</h1>
-            <div className="subtitle">Left: your source files. Right: Bedrock-generated purpose/status and a chat to ask anything.</div>
+            <h1>Weaver</h1>
+            <div className="subtitle">Turn your Box files into a living, AI-powered briefing room</div>
           </div>
 
           <div className="layout">
@@ -433,7 +435,6 @@
                   <div className="eyebrow">Data</div>
                   <div className="panel-title">long-term-sales-data.csv</div>
                 </div>
-                <button onClick={loadCsvPreview} disabled={csv.loading}>Refresh</button>
               </div>
               {csv.error ? (
                 <div className="csv-preview error">Could not load CSV preview: {csv.error}</div>
@@ -450,7 +451,6 @@
                   <div className="eyebrow">Briefing</div>
                   <div className="panel-title">Purpose &amp; Status</div>
                 </div>
-                <button onClick={loadSummaries} disabled={summary.loading}>Refresh</button>
               </div>
               <div className="summary-grid">
                 <div className="summary-card">
